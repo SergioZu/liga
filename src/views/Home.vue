@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/LaLigaLogo.png">
-    <Inicio msg="Temporada 20-21"/>
+    <Inicio msg="Temporada"/>
   </div>
 </template>
 

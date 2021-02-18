@@ -3,16 +3,16 @@
     <ul>
       <li><router-link to="/">Inicio</router-link></li>
       <li><router-link to="/clasificacion">Clasificacion</router-link></li>
-       <li><router-link to="/">Jornadas</router-link></li>
+      <li><router-link to="/">Jornadas</router-link></li>
       <li><router-link to="/">Equipos</router-link></li>
-       <li><router-link to="/">Jugadores</router-link></li>
+      <li><router-link to="/">Jugadores</router-link></li>
     </ul>
 
   </div>
   <router-view/>
 </template>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

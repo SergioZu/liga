@@ -6,22 +6,26 @@
         <th>Nombre</th>
         <th>Puntos</th> 
       </tr>
-      <tr v-for="articulo in liga" :key="articulo.id">
-        <td ><router-link to="/">{{ articulo.name }}</router-link></td>
-        <td >{{ articulo.points }}</td>
+      <tr v-for="equipo in liga" :key="equipo">
+        <td @click="obtenerEquipo(equipo.name)"> {{ equipo.name }}</td>
+        <td >{{ equipo.points }}</td>
       </tr>
     </table>
   </div>
-  
+  <div class="datosJugador" v-if="equipoActual!=''">
+    <DatosEquipos/>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import DatosEquipos from '@/components/DatosEquipos.vue'
 
 export default {
     data() {
         return {
-            liga: []
+            liga: [],
+            equipoActual:""
         }
     },
     mounted() {
@@ -31,16 +35,29 @@ export default {
           this.liga = response.data;
         })
         .catch(response=>alert("Error al recuperar datos "+response.status));;
+    },
+    components: {
+    DatosEquipos
+  },
+  methods:{
+    obtenerEquipo: function(equipoA){
+      this.equipoActual=equipoA;
     }
+  }
 }
 </script>
 
-<style>
+<style scoped>
 
 .clasificacion{
   width: 30%;
   margin-left: 20%;
+  position: absolute;
  
+}
+.datosJugador{
+  width: 30%;
+  margin-left: 60%;
 }
 table, th, td {
   border: 1px solid black;
