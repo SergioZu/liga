@@ -3,16 +3,16 @@
   <div class="nuevoPartidos">
     <form>
       <label >Numero de la Jornada:</label><br>
-      <input type="text" value="Jornada"><br>
+      <input type="text"  v-model="numerojornada"><br>
       <label >Fecha del Encuentro:</label><br>
-      <input type="date" ><br>
+      <input type="date" v-model="fechaJornada"><br>
       <label >Equipo Local:</label><br>
-      <select name="select" >
-        <option value="">...</option>
-        <option v-for="equipo in equipos" :key="equipo">{{equipo.team1}}</option>
+      <select name="select" v-model="equipo1">
+        <option >...</option>
+        <option  v-for="equipo in equipos" :key="equipo">{{equipo.team1}}</option>
       </select><br>
       <label >Equipo Visitante:</label><br>
-      <select name="select" >
+      <select name="select" v-model="equipo2">
         <option value="">...</option>
         <option v-for="equipo in equipos" :key="equipo">{{equipo.team2}}</option>
       </select>
@@ -26,7 +26,11 @@ import axios from "axios";
 export default {
   data() {
         return {
-            equipos: []
+            equipos: [],
+            numerojornada:"",
+            fechaJornada:"",
+            equipo1:"",
+            equipo2:""
         }
     },
   
@@ -37,6 +41,14 @@ export default {
           this.equipos = response.data;
         })
         .catch(response=>alert("Error al recuperar datos "+response.status))
+    },
+    methods:{
+      crearJornada: function(){
+        let matches={
+          matches.round=;
+        }
+        alert(matches);
+      }
     }
   
 }
