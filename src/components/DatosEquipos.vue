@@ -2,7 +2,10 @@
   <div class="jugadoresDiv">
     <ul>
         <li>Nombre:          Puntos:</li>
-        <li v-for="jugador in jugadores" :key="jugador">{{jugador.name}}      {{jugador.scores}}</li>
+        <span v-for="jugador in jugadores" :key="jugador" >
+          <li   v-if="this.nombreEquipo==jugador.team">{{jugador.name}}---{{jugador.scores}}</li>
+        </span>
+        
     </ul>  
   </div>
 </template>
@@ -12,6 +15,8 @@ import axios from "axios";
 
 
 export default {
+  props:['nombreEquipo'],
+
     data() {
         return {
             jugadores: []

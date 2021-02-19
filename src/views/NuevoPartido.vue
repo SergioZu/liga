@@ -1,0 +1,51 @@
+<template>
+<h2> Nuevos Partidos:</h2>
+  <div class="nuevoPartidos">
+    <form>
+      <label >Numero de la Jornada:</label><br>
+      <input type="text" value="Jornada"><br>
+      <label >Fecha del Encuentro:</label><br>
+      <input type="date" ><br>
+      <label >Equipo Local:</label><br>
+      <select name="select" >
+        <option value="">...</option>
+        <option v-for="equipo in equipos" :key="equipo">{{equipo.team1}}</option>
+      </select><br>
+      <label >Equipo Visitante:</label><br>
+      <select name="select" >
+        <option value="">...</option>
+        <option v-for="equipo in equipos" :key="equipo">{{equipo.team2}}</option>
+      </select>
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+        return {
+            equipos: []
+        }
+    },
+  
+   mounted() {
+        axios
+        .get("http://localhost:3000/matches")
+        .then(response => {
+          this.equipos = response.data;
+        })
+        .catch(response=>alert("Error al recuperar datos "+response.status))
+    }
+  
+}
+</script>
+
+<style>
+
+.nuevoPartidos{
+  width: 100%;
+}
+
+</style>

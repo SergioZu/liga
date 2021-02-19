@@ -13,7 +13,7 @@
     </table>
   </div>
   <div class="datosJugador" v-if="equipoActual!=''">
-    <DatosEquipos/>
+    <DatosEquipos v-bind:nombreEquipo="equipoActual"/>
   </div>
 </template>
 

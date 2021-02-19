@@ -3,7 +3,8 @@
     <ul>
       <li><router-link to="/">Inicio</router-link></li>
       <li><router-link to="/clasificacion">Clasificacion</router-link></li>
-      <li><router-link to="/">Jornadas</router-link></li>
+      <li><router-link to="/jornadas">Jornadas</router-link></li>
+      <li><router-link to="/nuevoPartido">Nuevos Partidos</router-link></li>
       <li><router-link to="/">Equipos</router-link></li>
       <li><router-link to="/">Jugadores</router-link></li>
     </ul>
