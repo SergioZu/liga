@@ -15,7 +15,8 @@
       <select name="select" v-model="equipo2">
         <option value="">...</option>
         <option v-for="equipo in equipos" :key="equipo">{{equipo.team2}}</option>
-      </select>
+      </select><br>
+      <button type="button"  @click="crearJornada()">enviar</button>
     </form>
   </div>
 </template>
@@ -45,10 +46,16 @@ export default {
     methods:{
       crearJornada: function(){
         let matches={
-          matches.round=;
+          round:this.numerojornada,
+          date:this.fechaJornada,
+          team1:this.equipo1,
+          team2:this.equipo2
         }
-        alert(matches);
-      }
+        axios.post("http://localhost:3000/matches", matches).then((result) => {
+            console.log(result);
+            alert("Se ha insertado la Jornada Correctamente");
+            });
+        }
     }
   
 }

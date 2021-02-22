@@ -6,9 +6,9 @@
         <th>Nombre</th>
         <th>Puntos</th> 
       </tr>
-      <tr v-for="equipo in liga" :key="equipo">
+      <tr v-for="equipo in clubs" :key="equipo">
         <td @click="obtenerEquipo(equipo.name)"> {{ equipo.name }}</td>
-        <td >{{ equipo.points }}</td>
+        <td>{{ equipo.points }}</td>
       </tr>
     </table>
   </div>
@@ -24,17 +24,12 @@ import DatosEquipos from '@/components/DatosEquipos.vue'
 export default {
     data() {
         return {
-            liga: [],
+            clubs: [],
+            jornadas:[],
+            puntos:[],
+            punto:0,
             equipoActual:""
         }
-    },
-    mounted() {
-      axios
-        .get("http://localhost:3000/clubs")
-        .then(response => {
-          this.liga = response.data;
-        })
-        .catch(response=>alert("Error al recuperar datos "+response.status));;
     },
     components: {
     DatosEquipos
@@ -42,8 +37,24 @@ export default {
   methods:{
     obtenerEquipo: function(equipoA){
       this.equipoActual=equipoA;
+    },
+    obtenerClubs: function(){
+      axios
+        .get("http://localhost:3000/clubs")
+        .then(response => {
+          this.clubs = response.data;
+           this.visualizarArrays();
+        })
+        .catch(response=>alert("Error al recuperar datos "+response.status));
+      },
+      visualizarArrays: function(){
+        console.log(this.clubs);
+      }
+  },
+   created(){
+     this.obtenerClubs();
+    
     }
-  }
 }
 </script>
 

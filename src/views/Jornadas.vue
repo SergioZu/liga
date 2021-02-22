@@ -1,9 +1,9 @@
 <template>
   <h2> Jornadas de la liga:</h2>
   <div class="clasificacion">
-   <select name="select" >
+   <select name="select">
     <option value="">...</option>
-    <option v-for="jornada in jornadas" :key="jornada" @click="obtenerJornada(jornada.round)">{{jornada.round}}</option>
+        <option v-for="jornada in jornadasAux" :key="jornada"  @click="obtenerJornada(jornada)">{{jornada}}</option>
    </select>    
   </div>
 
@@ -19,7 +19,9 @@ export default {
     data() {
         return {
             jornadas: [],
-            controlJornada:""
+            jornadasAux:[],
+            controlJornada:"",
+            aux:""
         }
     },
   
@@ -29,8 +31,19 @@ export default {
         .get("http://localhost:3000/matches")
         .then(response => {
           this.jornadas = response.data;
+
+
+          for(var i = 0; i < this.jornadas.length; i++) {  
+            if (this.aux!=this.jornadas[i].round) {
+               this.aux = this.jornadas[i].round;
+              this.jornadasAux.push( this.aux);
+            }
+          }
+
+
         })
         .catch(response=>alert("Error al recuperar datos "+response.status))
+        
     },
     obtenerJornada: function(jornadaActual){
       this.controlJornada=jornadaActual;
@@ -38,7 +51,7 @@ export default {
 
   },
    created(){
-       this.generarArray();
+     this.generarArray()
     },
     components: {
     JornadasDisputadas

@@ -5,8 +5,10 @@
       <li><router-link to="/clasificacion">Clasificacion</router-link></li>
       <li><router-link to="/jornadas">Jornadas</router-link></li>
       <li><router-link to="/nuevoPartido">Nuevos Partidos</router-link></li>
-      <li><router-link to="/">Equipos</router-link></li>
-      <li><router-link to="/">Jugadores</router-link></li>
+      <li><router-link to="/equipos">Equipos</router-link></li>
+      <li><router-link to="/jugadores">Jugadores</router-link></li>
+      <li><router-link to="/nuevoJugador">Nuevo Jugador</router-link></li>
+      <li><router-link to="/eliminarJugadores">Eliminar Jugador</router-link></li> 
     </ul>
 
   </div>
