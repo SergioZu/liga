@@ -25,6 +25,7 @@ export default {
     data() {
         return {
             clubs: [],
+            clubsOrdenados:[],
             jornadas:[],
             puntos:[],
             punto:0,
@@ -43,17 +44,18 @@ export default {
         .get("http://localhost:3000/clubs")
         .then(response => {
           this.clubs = response.data;
-           this.visualizarArrays();
+          this.ordenarAsc( this.clubs,"points");
         })
         .catch(response=>alert("Error al recuperar datos "+response.status));
       },
-      visualizarArrays: function(){
-        console.log(this.clubs);
+       ordenarAsc: function(array, etiqueta) {
+        array.sort(function (a, b) {
+            return a[etiqueta] < b[etiqueta];
+        });
       }
   },
    created(){
      this.obtenerClubs();
-    
     }
 }
 </script>

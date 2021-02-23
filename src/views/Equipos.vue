@@ -9,7 +9,7 @@
         <td @click="obtenerEquipo(equipo.name)"> 
           {{ equipo.name }}
            <span v-for="jugador in jugadores" :key="jugador">
-                <p v-if="jugador.team==equipo.name" @click="obtenerEquipo(jugador.name)">{{jugador.name}}</p>
+                <p v-if="jugador.team==equipo.name">{{jugador.name}}</p>
             </span>  
         </td>
       </tr>
@@ -18,7 +18,7 @@
   </div>
 
     <div class="formularioJugador" v-if="activado!=false">
-        <FormularioJugador :tipoVista="'equiposV'" :equipoJugador="equipoActual"/>
+        <FormularioJugador :tipoVista="'equiposV'" :nombreEquipo="equipoActual"/>
     </div>
  
 </template>

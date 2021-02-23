@@ -13,6 +13,9 @@
             {{jugador.name}}
         </option>
       </select><br>
+      <div v-if="activado==false">
+         <button type="button" disabled>enviar</button> 
+      </div>
       <div v-if="activado!=false">
          <button type="button"  @click="EliminarJugador()">enviar</button> 
       </div>

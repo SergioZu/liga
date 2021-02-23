@@ -4,7 +4,7 @@
     <form v-if="this.tipoVista=='nuevoJugador'">
       <label >Nombre del jugador:</label><br>
       <input type="text"  v-model="nombreJugador"><br>
-      <label >Equipo del jugador:</label><br>
+        <label >Nombre del equipo:</label><br>
       <select name="select" v-model="equipoJugador">
         <option >...</option>
         <option  v-for="equipo in clubes" :key="equipo">{{equipo.name}}</option>
@@ -17,7 +17,7 @@
       <label >Nombre del jugador:</label><br>
       <input type="text"  v-model="nombreJugador"><br>
       <label >Equipo del jugador:</label><br>
-        <label >{{this.equipoJugador}}</label><br>
+       <label >{{this.nombreEquipo}}</label><br>
       <label >Goles del Jugador:</label><br>
        <input type="text" v-model="scoreJugador"><br>
       <button type="button"  @click="crearJugador()">enviar</button>
@@ -29,11 +29,12 @@
 import axios from "axios";
 
 export default {
-  props:['tipoVista','equipoJugador'],
+  props:['tipoVista','nombreEquipo'],
   data() {
         return {
             clubes: [],
             nombreJugador:"",
+            nombreE:"",
             scoreJugador:""
         }
     },
@@ -50,7 +51,7 @@ export default {
       crearJugador: function(){
         let players={
           name:this.nombreJugador,
-          team:this.equipoJugador,
+          team:this.nombreEquipo,
           scores:this.scoreJugador
         }
         axios.post("http://localhost:3000/players", players).then((result) => {

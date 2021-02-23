@@ -47,40 +47,46 @@ export default {
             this.resultadoVisitante
           ]
         }
-        this.añadirPuntos(matches); 
-        // axios.put("http://localhost:3000/matches/"+jornada.id, matches).then((result) => {
-        //     alert("Se ha actualizado la Jornada Correctamente");
-        //     });
+        axios.put("http://localhost:3000/matches/"+jornada.id, matches).then((result) => {
+            alert("Se ha actualizado la Jornada Correctamente");
+               axios
+          .get("http://localhost:3000/clubs")
+          .then(response => {
+            this.equipos = response.data;
+            
+             for (let index = 0; index < this.equipos.length; index++) {
+               if(this.equipos[index].name==matches.team1){
+                 if(matches.score[0]>matches.score[1]){
+                   this.equipos[index].points+=3
+                    console.log( this.equipos[index].points);
+                 }else if(matches.score[0]==matches.score[1]){
+                   this.equipos[index].points+=1
+                 }
+                 
+               }else if(this.equipos[index].name==matches.team2){
+                 if(matches.score[0]<matches.score[1]){
+                   this.equipos[index].points+=3
+                 }else if(matches.score[0]==matches.score[1]){
+                   this.equipos[index].points+=1
+                 }
+                 
+               }
+          let equipo={
+                    name:this.equipos[index].name,
+                    id:this.equipos[index].id,
+                    country:this.equipos[index].country,
+                    points:this.equipos[index].points
+                  }
+                  axios.put("http://localhost:3000/clubs/"+equipo.id, equipo).then((result) => {
+                       });
+
+                  }
+          })
+          .catch(response=>alert("Error al recuperar datos "+response.status));
+            });
        
-           
-      
-      },añadirPuntos: function(jornadas){
-      console.log(jornadas.team1+" "+equipos)
-
-       axios
-        .get("http://localhost:3000/clubs/")
-        .then(response => {
-          this.equipos = response.data; 
-          for (let index = 0; index < this.equipos.length; index++) {
-            if(jornadas.team1==this.equipos.name){
-              if(jornadas.score[0]>jornadas.score[1]){
-
-              }
-              if(jornadas.score[0]<jornadas.score[1]){
-
-              }
-              if(jornadas.score[0]==jornadas.score[1]){
-
-              }
-            }
-              
-          }
-        
-        })
-        .catch(response=>alert("Error al recuperar datos "+response.status));
-      
-    }
-      
+       
+        }
     }
 }
 </script>
